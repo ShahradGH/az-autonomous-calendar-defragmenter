@@ -1,0 +1,12 @@
+{
+  "allowedDelegatedScopes": [
+    "Calendars.Read.Shared",
+    "Calendars.ReadWrite"
+  ],
+  "prohibitedScopes": [
+    "Mail.Read",
+    "Chat.Read.All",
+    "Files.Read.All"
+  ],
+  "privacyMode": "FreeBusySlotMetadataOnly"
+}

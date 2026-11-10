@@ -1,0 +1,10 @@
+// Measure weekly reclaimed continuous >=3h deep-work blocks across engineering squads
+CalendarDefragTelemetry_CL
+| where TimeGenerated > ago(30d)
+| summarize 
+    ProposalsSent = countif(Action_s == "STAGE_MORNING_CLUSTER_NEGOTIATION_CARD"),
+    AcceptedMoves = countif(ProposalAccepted_b == true),
+    ReclaimedFocusBlocks3hPlus = sum(ReclaimedFocusBlocks_d),
+    ExternalLocksRespected = countif(Action_s == "LOCK_EXTERNAL_CLIENT_MEETING")
+    by EngineeringSquad_s, bin(TimeGenerated, 7d)
+| order by ReclaimedFocusBlocks3hPlus desc
